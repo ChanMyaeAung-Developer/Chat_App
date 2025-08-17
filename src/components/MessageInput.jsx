@@ -88,8 +88,8 @@ const MessageInput = () => {
 
           <button
             type="button"
-            className={`hidden sm:flex btn btn-circle bg-primary hover:bg-secondary
-                     ${imagePreview ? "text-emerald-500" : "text-base-content"}`}
+            className={`hidden sm:flex btn  btn-primary hover:bg-secondary
+                     ${imagePreview ? "text-emerald-500" : "text-primary-content"}`}
             onClick={() => fileInputRef.current?.click()}
           >
             <Image size={20} />
@@ -97,7 +97,7 @@ const MessageInput = () => {
         </div>
         <button
           type="submit"
-          className="btn btn-md btn-circle bg-primary hover:bg-secondary"
+          className="btn btn-md  btn-primary hover:bg-secondary"
           disabled={!text.trim() && !imagePreview}
         >
           <Send size={22} />
