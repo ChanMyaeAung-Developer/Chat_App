@@ -65,7 +65,7 @@ const SignUpPage = () => {
                 <input
                   type="text"
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="John Doe"
+                  placeholder="Mg Mg"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 />
@@ -144,10 +144,13 @@ const SignUpPage = () => {
 
       {/* right side */}
 
-      <AuthImagePattern
-        title="Join our community"
-        subtitle="Connect with friends, share moments, and stay in touch with your loved ones."
-      />
+      <div className="hidden lg:flex items-center justify-center relative w-full h-full">
+  <img
+    src="/login.png"
+    alt="Login Background"
+    className="max-w-full max-h-full object-contain"
+  />
+</div>
     </div>
   );
 };
