@@ -79,7 +79,7 @@ const ChatContainer = () => {
               </time>
             </div>
             <div
-              className={`chat-bubble flex flex-col  ${
+              className={`chat-bubble flex flex-col max-w-[80%] rounded-xl  ${
                 message.senderId === authUser._id ? "bg-primary" : "bg-base-200"
               }`}
             >
