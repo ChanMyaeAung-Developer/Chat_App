@@ -25,7 +25,12 @@ const ChatContainer = () => {
     subscribeToMessages();
 
     return () => unsubscribeFromMessages();
-  }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
+  }, [
+    selectedUser._id,
+    getMessages,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  ]);
 
   useEffect(() => {
     if (messageEndRef.current && messages) {
@@ -51,7 +56,9 @@ const ChatContainer = () => {
         {messages.map((message) => (
           <div
             key={message._id}
-            className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
+            className={`chat ${
+              message.senderId === authUser._id ? "chat-end" : "chat-start"
+            }`}
             ref={messageEndRef}
           >
             <div className=" chat-image avatar">
@@ -67,11 +74,15 @@ const ChatContainer = () => {
               </div>
             </div>
             <div className="chat-header mb-1">
-              <time className="text-xs opacity-50 ml-1">
+              <time className={`text-xs opacity-50 ml-1 `}>
                 {formatMessageTime(message.createdAt)}
               </time>
             </div>
-            <div className={`chat-bubble flex flex-col  ${message.senderId === authUser._id ?"bg-primary":"bg-base-200"}`}>
+            <div
+              className={`chat-bubble flex flex-col  ${
+                message.senderId === authUser._id ? "bg-primary" : "bg-base-200"
+              }`}
+            >
               {message.image && (
                 <img
                   src={message.image}
@@ -79,7 +90,17 @@ const ChatContainer = () => {
                   className="sm:max-w-[200px] rounded-md mb-2"
                 />
               )}
-              {message.text && <p className="text-primary-content">{message.text}</p>}
+              {message.text && (
+                <p
+                  className={`${
+                    message.senderId === authUser._id
+                      ? "text-primary-content"
+                      : "text-base-content"
+                  }`}
+                >
+                  {message.text}
+                </p>
+              )}
             </div>
           </div>
         ))}
