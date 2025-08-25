@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
-import { Image, Send, X } from "lucide-react";
+import { Image, Send, X, Smile } from "lucide-react";
 import toast from "react-hot-toast";
+import EmojiPicker from "emoji-picker-react"; // ✅ library import
 
 const MessageInput = () => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false); // ✅ emoji picker toggle
   const fileInputRef = useRef(null);
   const { sendMessage } = useChatStore();
 
@@ -47,6 +49,11 @@ const MessageInput = () => {
     }
   };
 
+  const handleEmojiClick = (emojiData) => {
+    setText((prev) => prev + emojiData.emoji); // ✅ emoji ကို text ထဲ append
+    setShowEmojiPicker(false); // ✅ optional: auto close
+  };
+
   return (
     <div className="p-4 w-full">
       {imagePreview && (
@@ -69,8 +76,8 @@ const MessageInput = () => {
         </div>
       )}
 
-      <form onSubmit={handleSendMessage} className="flex items-center gap-2">
-        <div className="flex-1 flex gap-2">
+      <form onSubmit={handleSendMessage} className="flex items-center gap-2 relative">
+        <div className="flex-1 flex gap-2 items-center">
           <input
             type="text"
             className="w-full input input-bordered rounded-lg input-sm sm:input-md"
@@ -86,24 +93,43 @@ const MessageInput = () => {
             onChange={handleImageChange}
           />
 
+          {/* Emoji button */}
           <button
             type="button"
-            className={`hidden sm:flex btn  btn-primary hover:bg-secondary
+            className="btn btn-ghost"
+            onClick={() => setShowEmojiPicker((prev) => !prev)}
+          >
+            <Smile size={22} />
+          </button>
+
+          {/* Image button */}
+          <button
+            type="button"
+            className={`hidden sm:flex btn btn-primary hover:bg-secondary
                      ${imagePreview ? "text-emerald-500" : "text-primary-content"}`}
             onClick={() => fileInputRef.current?.click()}
           >
             <Image size={20} />
           </button>
         </div>
+
         <button
           type="submit"
-          className="btn btn-md  btn-primary hover:bg-secondary"
+          className="btn btn-md btn-primary hover:bg-secondary"
           disabled={!text.trim() && !imagePreview}
         >
           <Send size={22} />
         </button>
+
+        {/* Emoji picker popup */}
+        {showEmojiPicker && (
+          <div className="absolute bottom-16 left-0 z-50">
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
+          </div>
+        )}
       </form>
     </div>
   );
 };
+
 export default MessageInput;
