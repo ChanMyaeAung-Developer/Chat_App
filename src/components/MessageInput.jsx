@@ -96,7 +96,7 @@ const MessageInput = () => {
           {/* Emoji button */}
           <button
             type="button"
-            className="btn btn-ghost"
+            className="btn  btn-primary"
             onClick={() => setShowEmojiPicker((prev) => !prev)}
           >
             <Smile size={22} />
@@ -105,7 +105,7 @@ const MessageInput = () => {
           {/* Image button */}
           <button
             type="button"
-            className={`hidden sm:flex btn btn-primary hover:bg-secondary
+            className={`hidden sm:flex btn btn-primary 
                      ${imagePreview ? "text-emerald-500" : "text-primary-content"}`}
             onClick={() => fileInputRef.current?.click()}
           >
@@ -115,7 +115,7 @@ const MessageInput = () => {
 
         <button
           type="submit"
-          className="btn btn-md btn-primary hover:bg-secondary"
+          className="btn btn-md btn-primary "
           disabled={!text.trim() && !imagePreview}
         >
           <Send size={22} />
@@ -123,7 +123,7 @@ const MessageInput = () => {
 
         {/* Emoji picker popup */}
         {showEmojiPicker && (
-          <div className="absolute bottom-16 left-0 z-50">
+          <div className="absolute bottom-16 left-0 z-50 ">
             <EmojiPicker onEmojiClick={handleEmojiClick} />
           </div>
         )}
