@@ -33,6 +33,17 @@ export const useChatStore = create((set, get) => ({
       set({ isMessagesLoading: false });
     }
   },
+  deleteMessage : async (messageId) => {
+    try {
+      const res = await axiosInstance.delete(`/messages/delete/${messageId}`, {
+        withCredentials: true, // cookie-based authentication
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error deleting message:", error.response.data);
+    }
+  },
+
   sendMessage: async (messageData) => {
     const { selectedUser, messages } = get();
     try {

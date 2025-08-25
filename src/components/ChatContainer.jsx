@@ -15,6 +15,7 @@ const ChatContainer = () => {
     selectedUser,
     subscribeToMessages,
     unsubscribeFromMessages,
+    deleteMessage,
   } = useChatStore();
   const { authUser } = useAuthStore();
   const messageEndRef = useRef(null);
@@ -83,6 +84,9 @@ const ChatContainer = () => {
                 message.senderId === authUser._id ? "bg-primary" : "bg-base-200"
               }`}
             >
+              <button onClick={() => deleteMessage(message._id)}>Delete</button>
+
+              
               {message.image && (
                 <img
                   src={message.image}
@@ -100,6 +104,7 @@ const ChatContainer = () => {
                 >
                   {message.text}
                 </p>
+                
               )}
             </div>
           </div>
