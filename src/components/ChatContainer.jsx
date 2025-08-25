@@ -1,5 +1,6 @@
 import { useChatStore } from "../store/useChatStore";
 import { useEffect, useRef } from "react";
+import { Trash2 } from 'lucide-react';
 
 import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
@@ -79,12 +80,12 @@ const ChatContainer = () => {
                 {formatMessageTime(message.createdAt)}
               </time>
             </div>
+
             <div
               className={`chat-bubble flex flex-col max-w-[80%] rounded-xl  ${
                 message.senderId === authUser._id ? "bg-primary" : "bg-base-200"
               }`}
             >
-              <button onClick={() => deleteMessage(message._id)}>Delete</button>
 
               
               {message.image && (
@@ -107,6 +108,13 @@ const ChatContainer = () => {
                 
               )}
             </div>
+            {message.senderId === authUser._id && 
+            <button className=" btn text-red-500 "
+             onClick={() => deleteMessage(message._id)}><Trash2 size= {20} /></button>
+            
+            }
+
+           
           </div>
         ))}
       </div>
