@@ -45,8 +45,8 @@ const ProfilePage = () => {
                 />
               ) : (
                 <p
-                  className="w-10 h-10 rounded-full bg-primary flex items-center
-                 justify-center text-primary-content font-medium text-xl text-center"
+                  className="size-32 rounded-full bg-primary flex items-center
+                 justify-center text-primary-content font-medium text-6xl text-center object-cover border-4"
                 >
                   {selectedUser.fullName.split(" ")[0][0].toUpperCase()}
                 </p>
