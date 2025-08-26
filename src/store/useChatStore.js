@@ -68,11 +68,20 @@ export const useChatStore = create((set, get) => ({
         messages: [...get().messages, newMessage],
       });
     });
+socket.on("messageDeleted", ({ messageId }) => {
+  set({
+    messages: get().messages.map(msg =>
+      msg._id === messageId ? { ...msg, isDeleted: true } : msg
+    ),
+  });
+});
   },
+  
 
   unsubscribeFromMessages: () => {
     const socket = useAuthStore.getState().socket;
     socket.off("newMessage");
+    socket.off("messageDeleted");
   },
 
   setSelectedUser: (selectedUser) => set({ selectedUser }),
