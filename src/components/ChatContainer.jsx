@@ -122,7 +122,7 @@ const ChatContainer = () => {
                 <button
                   className={`${
                     message.isDeleted ? "hidden" : ""
-                  } min-h-0 h-3 w-3 absolute top-2 -left-6 opacity-0 group-hover:opacity-100 transition-opacity text-red-500`}
+                  } min-h-0 h-3 w-3 absolute top-50% -left-6 opacity-0 group-hover:opacity-100 transition-opacity text-red-500`}
                   onClick={() => deleteMessage(message._id)}
                 >
                   <Trash2 size={18} />
