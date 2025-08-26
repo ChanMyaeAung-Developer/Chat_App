@@ -1,6 +1,6 @@
 import { useChatStore } from "../store/useChatStore";
 import { useEffect, useRef } from "react";
-import { Trash2 } from 'lucide-react';
+import { Trash2 } from "lucide-react";
 
 import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
@@ -81,46 +81,54 @@ const ChatContainer = () => {
               </time>
             </div>
 
-            <div className="relative group flex flex-col max-w-[80%]">
-           <div
-  className={`chat-bubble flex flex-col max-w-[80%] rounded-xl ${
-    message.senderId === authUser._id ? "bg-primary" : "bg-base-200"
-  }`}
->
-  {message.isDeleted ? (
-    <p className="italic text-gray-500">This message was deleted</p>
-  ) : (
-    <>
-      {message.image && (
-        <img
-          src={message.image}
-          alt="Attachment"
-          className="sm:max-w-[200px] rounded-md mb-2"
-        />
-      )}
-      {message.text && (
-        <p
-          className={`${
-            message.senderId === authUser._id
-              ? "text-primary-content"
-              : "text-base-content"
-          }`}
-        >
-          {message.text}
-        </p>
-      )}
-    </>
-  )}
-</div>
+            <div className="relative group flex flex-col
+            justify-center items-center ">
+              <div
+                className={`chat-bubble flex flex-col max-w-[100%] rounded-xl ${
+                  message.senderId === authUser._id
+                    ? "bg-primary"
+                    : "bg-base-200"
+                }`}
+              >
+                {message.isDeleted ? (
+                  <p className="italic text-gray-500">
+                    This message was deleted
+                  </p>
+                ) : (
+                  <>
+                    {message.image && (
+                      <img
+                        src={message.image}
+                        alt="Attachment"
+                        className="sm:max-w-[200px] rounded-md mb-2"
+                      />
+                    )}
+                    {message.text && (
+                      <p
+                        className={`${
+                          message.senderId === authUser._id
+                            ? "text-primary-content"
+                            : "text-base-content"
+                        }`}
+                      >
+                        {message.text}
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
 
-            {message.senderId === authUser._id && 
-            <button 
-                  className=" min-h-0 h-3 w-3 absolute top-2 -left-6 opacity-0 group-hover:opacity-100 transition-opacity text-red-500"
-             onClick={() => deleteMessage(message._id)}><Trash2 size= {18} /></button>
-            
-            }
-
-         </div>  
+              {message.senderId === authUser._id && (
+                <button
+                  className={`${
+                    message.isDeleted ? "hidden" : ""
+                  } min-h-0 h-3 w-3 absolute top-2 -left-6 opacity-0 group-hover:opacity-100 transition-opacity text-red-500`}
+                  onClick={() => deleteMessage(message._id)}
+                >
+                  <Trash2 size={18} />
+                </button>
+              )}
+            </div>
           </div>
         ))}
       </div>
