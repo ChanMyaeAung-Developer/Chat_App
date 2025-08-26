@@ -33,16 +33,38 @@ export const useChatStore = create((set, get) => ({
       set({ isMessagesLoading: false });
     }
   },
+  //for socket
+  // deleteMessage : async (messageId) => {
+  //   try {
+  //     const res = await axiosInstance.delete(`/messages/delete/${messageId}`, {
+  //       withCredentials: true, // cookie-based authentication
+  //     });
+  //     console.log(res.data);
+  //   } catch (error) {
+  //     console.error("Error deleting message:", error.response.data);
+  //   }
+  // },
+
   deleteMessage : async (messageId) => {
-    try {
-      const res = await axiosInstance.delete(`/messages/delete/${messageId}`, {
-        withCredentials: true, // cookie-based authentication
-      });
-      console.log(res.data);
-    } catch (error) {
-      console.error("Error deleting message:", error.response.data);
-    }
-  },
+  try {
+    const res = await axiosInstance.delete(`/messages/delete/${messageId}`, {
+      withCredentials: true,
+    });
+
+    // Express response မှာ deletedMessageId ပေးထားမယ်
+    const { deletedMessageId } = res.data;
+
+    // DB က အောင်မြင်စွာ ဖျက်ပြီဆို frontend store မှာလည်း update လုပ်ပေး
+    set({
+      messages: get().messages.map(msg =>
+        msg._id === deletedMessageId ? { ...msg, isDeleted: true } : msg
+      ),
+    });
+
+  } catch (error) {
+    console.error("Error deleting message:", error.response?.data || error.message);
+  }
+},
 
   sendMessage: async (messageData) => {
     const { selectedUser, messages } = get();
