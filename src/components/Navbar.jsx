@@ -17,7 +17,7 @@ const Navbar = () => {
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
                 <MessageCircleMore  className="w-5 h-5 text-primary" />
               </div>
-              <h1 className="text-lg font-bold">ChitChatter</h1>
+              <h1 className="text-lg font-bold">ShweChat</h1>
             </Link>
           </div>
 

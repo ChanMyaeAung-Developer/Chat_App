@@ -64,7 +64,12 @@ const SignUpPage = () => {
                 </div>
                 <input
                   type="text"
-                  className={`input input-bordered w-full pl-10`}
+                  className={` w-full pl-10 pr-10 py-2
+    rounded-xl border border-gray-300 
+    bg-gray-50
+    text-gray-900 placeholder-gray-400
+    focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+    shadow-sm transition-all duration-200`}
                   placeholder="Mg Mg"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
@@ -82,7 +87,12 @@ const SignUpPage = () => {
                 </div>
                 <input
                   type="email"
-                  className={`input input-bordered w-full pl-10`}
+                  className={` w-full pl-10 pr-10 py-2
+    rounded-xl border border-gray-300 
+    bg-gray-50
+    text-gray-900 placeholder-gray-400
+    focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+    shadow-sm transition-all duration-200`}
                   placeholder="you@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -100,7 +110,12 @@ const SignUpPage = () => {
                 </div>
                 <input
                   type={showPassword ? "text" : "password"}
-                  className={`input input-bordered w-full pl-10`}
+                  className={` w-full pl-10 pr-10 py-2
+    rounded-xl border border-gray-300 
+    bg-gray-50
+    text-gray-900 placeholder-gray-400
+    focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary
+    shadow-sm transition-all duration-200`}
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}

@@ -13,10 +13,10 @@ const MessageInput = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please select an image file");
-      return;
-    }
+    // if (!file.type.startsWith("image/")) {
+    //   toast.error("Please select an image file");
+    //   return;
+    // }
 
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -96,7 +96,7 @@ const MessageInput = () => {
           {/* Emoji button */}
           <button
             type="button"
-            className="btn  btn-primary"
+            className="btn  btn-primary btn-sm sm:btn-md"
             onClick={() => setShowEmojiPicker((prev) => !prev)}
           >
             <Smile size={22} />
@@ -105,7 +105,7 @@ const MessageInput = () => {
           {/* Image button */}
           <button
             type="button"
-            className={`hidden sm:flex btn btn-primary 
+            className={` sm:flex btn btn-primary btn-sm sm:btn-md
                      ${imagePreview ? "text-emerald-500" : "text-primary-content"}`}
             onClick={() => fileInputRef.current?.click()}
           >
@@ -115,7 +115,7 @@ const MessageInput = () => {
 
         <button
           type="submit"
-          className="btn btn-md btn-primary "
+          className="btn btn-primary btn-sm sm:btn-md"
           disabled={!text.trim() && !imagePreview}
         >
           <Send size={22} />
